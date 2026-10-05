@@ -1,5 +1,6 @@
 import React from 'react';
 import { skillGroups } from '../data/portfolio';
+import SkillIcon from './SkillIcon';
 import './Skills.css';
 
 export default function Skills() {
@@ -12,7 +13,12 @@ export default function Skills() {
             <dt>{group.title}</dt>
             <dd>
               <ul className="skills-values">
-                {group.skills.map(skill => <li key={skill}>{skill}</li>)}
+                {group.skills.map(skill => (
+                  <li key={skill}>
+                    <SkillIcon skill={skill} />
+                    <span>{skill}</span>
+                  </li>
+                ))}
               </ul>
             </dd>
           </div>

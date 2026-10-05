@@ -18,7 +18,7 @@ export const projects = [
   {
     title: 'Jiafu Game Store',
     description: 'A game top-up store with product browsing, orders, and wallet top-ups.',
-    tags: ['React', 'Spring Boot'],
+    tags: ['React', 'Spring Boot','MySql'],
     image: '', // Add a screenshot to public/ and set this to '/screenshot.png'.
     liveUrl: 'https://jiafu-game.store',
   },
