@@ -1,18 +1,23 @@
 import React from 'react';
 import { skillGroups } from '../data/portfolio';
+import './Skills.css';
 
 export default function Skills() {
   return (
-    <section className="skills-section" id="skills">
-      <h2>What I'm learning</h2>
-      <div className="skill-groups">
+    <section className="skills-section" id="skills" aria-labelledby="skills-title">
+      <h2 id="skills-title">What I'm learning</h2>
+      <dl className="skills-panel">
         {skillGroups.map(group => (
-          <div className="skill-group" key={group.title}>
-            <h3>{group.title}</h3>
-            <ul>{group.skills.map(skill => <li key={skill}>{skill}</li>)}</ul>
+          <div className="skills-row" key={group.title}>
+            <dt>{group.title}</dt>
+            <dd>
+              <ul className="skills-values">
+                {group.skills.map(skill => <li key={skill}>{skill}</li>)}
+              </ul>
+            </dd>
           </div>
         ))}
-      </div>
+      </dl>
     </section>
   );
 }

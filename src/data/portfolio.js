@@ -7,19 +7,12 @@ export const profile = {
 };
 
 export const skillGroups = [
-  { title: 'Frontend', skills: ['HTML', 'CSS', 'React'] },
-  { title: 'Backend', skills: ['Core Java', 'Spring', 'Spring Boot'] },
+  { title: 'Languages', skills: ['HTML', 'CSS', 'JavaScript', 'Core Java'] },
+  { title: 'Frameworks', skills: ['Spring', 'Spring Boot'] },
+  { title: 'Libraries', skills: ['React'] },
   { title: 'Database', skills: ['MySQL'] },
-{
-  title: 'Tools',
-  skills: [
-    'VS Code',
-    'IntelliJ IDEA',
-    'Git',
-    'GitHub',
-    'Postman',
-  ],
-},];
+  { title: 'Tools', skills: ['VS Code','Intellij IDEA','Git Hub','Post Man'] },
+];
 
 export const projects = [
   {
