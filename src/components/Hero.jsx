@@ -116,7 +116,11 @@ export default function Hero() {
 
           <p className="landing-subtitle">Java · Spring Boot · MySQL · React</p>
 
-     
+          <p className="landing-description">
+            I build backend systems, REST APIs, authentication flows, and database-driven applications
+            with Java and Spring Boot, then connect them to practical frontend experiences when the project
+            needs the full stack.
+          </p>
 
           <div className="landing-tech-row" aria-label="Main technologies">
             {Object.entries(techIcons).map(([name, src]) => (
@@ -241,7 +245,21 @@ export default function Hero() {
             </p>
 
             <div className="hero-action-frames about-pop" data-about-pop aria-label="Portfolio actions">
-              <span className="hero-action-frame">Download CV</span>
+              <a
+                className="hero-action-frame"
+                href="/Kyaw-Su-Hein-CV.pdf"
+                target="_blank"
+                rel="noreferrer"
+              >
+                View CV
+              </a>
+              <a
+                className="hero-action-frame"
+                href="/Kyaw-Su-Hein-CV.pdf"
+                download="Kyaw-Su-Hein-CV.pdf"
+              >
+                Download CV
+              </a>
               <a className="hero-action-frame" href="#projects">View Project</a>
             </div>
 
