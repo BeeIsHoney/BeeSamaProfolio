@@ -248,14 +248,6 @@ export default function Hero() {
               <a
                 className="hero-action-frame"
                 href="/Kyaw-Su-Hein-CV.pdf"
-                target="_blank"
-                rel="noreferrer"
-              >
-                View CV
-              </a>
-              <a
-                className="hero-action-frame"
-                href="/Kyaw-Su-Hein-CV.pdf"
                 download="Kyaw-Su-Hein-CV.pdf"
               >
                 Download CV
