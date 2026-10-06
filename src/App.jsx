@@ -1,8 +1,7 @@
 import React from 'react';
 import Header from './components/Header';
 import Hero from './components/Hero';
-import Skills from './components/Skills';
-import Projects from './components/Projects';
+import PortfolioShowcase from './components/PortfolioShowcase';
 import Contact from './components/Contact';
 import Footer from './components/Footer';
 
@@ -12,8 +11,7 @@ export default function App() {
       <Header />
       <main>
         <Hero />
-        <Skills />
-        <Projects />
+        <PortfolioShowcase />
         <Contact />
       </main>
       <Footer />

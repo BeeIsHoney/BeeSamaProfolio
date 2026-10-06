@@ -2,44 +2,58 @@ import React from 'react';
 import { profile } from '../data/portfolio';
 import Icon from './Icon';
 
-function getContactValue(type, value) {
-  if (!value) return 'Not added yet';
-  if (type === 'mail') return value;
-
-  let username = value;
-  try {
-    username = new URL(value).pathname.split('/').filter(Boolean)[0] || value;
-  } catch {
-    // Accept a username directly as well as a profile URL.
-  }
-  return type === 'telegram' ? `@${username.replace(/^@/, '')}` : username;
+function githubHref(value) {
+  if (!value) return '#';
+  if (/^https?:\/\//i.test(value)) return value;
+  return `https://github.com/${value.replace(/^@/, '')}`;
 }
 
-function ContactLink({ type, label, value, href }) {
-  const content = (
-    <>
-      <Icon type={type} />
-      <span style={{ display: 'grid', gap: '4px', flex: 1, minWidth: 0 }}>
-        <span style={{ color: 'var(--accent)' }}>{label}</span>
-        <span style={{ color: 'var(--muted)', overflowWrap: 'anywhere' }}>
-          {getContactValue(type, value)}
-        </span>
-      </span>
-    </>
-  );
-  return value ? (
-    <a className="contact-link" href={href} target={type === 'mail' ? undefined : '_blank'} rel="noopener noreferrer">{content}</a>
-  ) : <div className="contact-link contact-placeholder">{content}</div>;
+function telegramHref(value) {
+  if (!value) return '#';
+  if (/^https?:\/\//i.test(value)) return value;
+  return `https://t.me/${value.replace(/^@/, '')}`;
 }
 
 export default function Contact() {
+  const links = [
+    {
+      type: 'mail',
+      label: 'Email',
+      href: `mailto:${profile.email}`,
+    },
+    {
+      type: 'github',
+      label: 'GitHub',
+      href: githubHref(profile.github),
+    },
+    {
+      type: 'telegram',
+      label: 'Telegram',
+      href: telegramHref(profile.telegram),
+    },
+  ];
+
   return (
-    <section className="contact-section" id="contact">
-      <div className="contact-copy"><h2>Let's <span>talk.</span></h2><p>You can reach me here.</p></div>
-      <div className="contact-links">
-        <ContactLink type="mail" label="Email" value={profile.email} href={`mailto:${profile.email}`} />
-        <ContactLink type="github" label="GitHub" value={profile.github} href={profile.github} />
-        <ContactLink type="telegram" label="Telegram" value={profile.telegram} href={profile.telegram} />
+    <section className="contact-section" id="contact" aria-labelledby="contact-title">
+      <div className="contact-copy">
+        <span className="contact-kicker">CONTACT</span>
+        <h2 id="contact-title">Let's talk.</h2>
+        <p>Have a project in mind or just want to connect? Reach me here.</p>
+      </div>
+
+      <div className="contact-links" aria-label="Contact links">
+        {links.map((link) => (
+          <a
+            key={link.type}
+            className="contact-link"
+            href={link.href}
+            target={link.type === 'mail' ? undefined : '_blank'}
+            rel={link.type === 'mail' ? undefined : 'noopener noreferrer'}
+          >
+            <Icon type={link.type} />
+            <span>{link.label}</span>
+          </a>
+        ))}
       </div>
     </section>
   );

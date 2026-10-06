@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 
 // Devicon SVGs: https://github.com/devicons/devicon
 const iconBase = 'https://cdn.jsdelivr.net/gh/devicons/devicon@v2.17.0/icons/';
+
 const skillIcons = {
   html: 'html5/html5-original.svg',
   html5: 'html5/html5-original.svg',
@@ -13,6 +14,9 @@ const skillIcons = {
   'core java': 'java/java-original.svg',
   spring: 'spring/spring-original.svg',
   'spring boot': 'spring/spring-original.svg',
+  bootstrap: 'bootstrap/bootstrap-original.svg',
+  'tailwind css': 'tailwindcss/tailwindcss-original.svg',
+  tailwind: 'tailwindcss/tailwindcss-original.svg',
   react: 'react/react-original.svg',
   mysql: 'mysql/mysql-original.svg',
   'vs code': 'vscode/vscode-original.svg',
@@ -45,6 +49,7 @@ export default function SkillIcon({ skill }) {
   const path = normalizedIcons[name];
   const url = path ? `${iconBase}${path}` : '';
   const lightIcon = ['github', 'terminal', 'commandline'].includes(name);
+
   const iconStyle = {
     display: 'block',
     width: 22,
@@ -55,9 +60,17 @@ export default function SkillIcon({ skill }) {
 
   if (!url || failedSource === url) {
     return (
-      <svg className="skill-icon" width="22" height="22" viewBox="0 0 24 24"
-        fill="none" stroke="currentColor" strokeWidth="2" aria-hidden="true"
-        style={{ ...iconStyle, color: 'var(--accent)' }}>
+      <svg
+        className="skill-icon"
+        width="22"
+        height="22"
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        strokeWidth="2"
+        aria-hidden="true"
+        style={{ ...iconStyle, color: 'var(--accent)' }}
+      >
         <path d="m8 6-6 6 6 6m8-12 6 6-6 6m-3-15-2 18" />
       </svg>
     );
@@ -73,7 +86,10 @@ export default function SkillIcon({ skill }) {
       height="22"
       loading="lazy"
       decoding="async"
-      style={{ ...iconStyle, filter: lightIcon ? 'brightness(0) invert(1)' : undefined }}
+      style={{
+        ...iconStyle,
+        filter: lightIcon ? 'brightness(0) invert(1)' : undefined,
+      }}
       onError={() => setFailedSource(url)}
     />
   );

@@ -1,0 +1,24 @@
+<svg width="1200" height="760" viewBox="0 0 1200 760" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="1200" height="760" fill="#0F192A"/>
+  <text x="80" y="100" fill="#72B5FF" font-family="monospace" font-size="20" letter-spacing="3">MAIN USER FLOW</text>
+  <text x="80" y="150" fill="#EAF0FB" font-family="monospace" font-weight="700" font-size="42">From browsing to an order</text>
+  <path d="M210 365H335M465 365H590M720 365H845" stroke="#72B5FF" stroke-width="4" stroke-dasharray="10 10"/>
+  <path d="M319 349L337 365L319 381M574 349L592 365L574 381M829 349L847 365L829 381" stroke="#72B5FF" stroke-width="4"/>
+  <rect x="78" y="270" width="132" height="190" fill="#152540" stroke="#405B82" stroke-width="3"/>
+  <text x="109" y="325" fill="#72B5FF" font-family="monospace" font-size="16">STEP 01</text>
+  <text x="105" y="383" fill="#EAF0FB" font-family="monospace" font-weight="700" font-size="24">Browse</text>
+  <text x="95" y="421" fill="#ABBBD4" font-family="monospace" font-size="15">Products</text>
+  <rect x="337" y="270" width="128" height="190" fill="#152540" stroke="#405B82" stroke-width="3"/>
+  <text x="365" y="325" fill="#72B5FF" font-family="monospace" font-size="16">STEP 02</text>
+  <text x="365" y="383" fill="#EAF0FB" font-family="monospace" font-weight="700" font-size="24">Choose</text>
+  <text x="354" y="421" fill="#ABBBD4" font-family="monospace" font-size="15">Top-up item</text>
+  <rect x="592" y="270" width="128" height="190" fill="#152540" stroke="#405B82" stroke-width="3"/>
+  <text x="620" y="325" fill="#72B5FF" font-family="monospace" font-size="16">STEP 03</text>
+  <text x="618" y="383" fill="#EAF0FB" font-family="monospace" font-weight="700" font-size="24">Order</text>
+  <text x="610" y="421" fill="#ABBBD4" font-family="monospace" font-size="15">Submit order</text>
+  <rect x="847" y="270" width="274" height="190" fill="#152540" stroke="#405B82" stroke-width="3"/>
+  <text x="883" y="325" fill="#72B5FF" font-family="monospace" font-size="16">STEP 04</text>
+  <text x="883" y="383" fill="#EAF0FB" font-family="monospace" font-weight="700" font-size="24">Wallet top-up</text>
+  <text x="883" y="421" fill="#ABBBD4" font-family="monospace" font-size="15">Add balance when needed</text>
+  <text x="80" y="620" fill="#6F8BAB" font-family="monospace" font-size="16">A SIMPLE VIEW OF THE EXPERIENCE DESCRIBED IN THE PROJECT</text>
+</svg>

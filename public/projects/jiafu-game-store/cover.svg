@@ -1,0 +1,24 @@
+<svg width="1200" height="760" viewBox="0 0 1200 760" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="1200" height="760" fill="#0B1424"/>
+  <path d="M0 72H1200M0 144H1200M0 216H1200M0 288H1200M0 360H1200M0 432H1200M0 504H1200M0 576H1200M0 648H1200M72 0V760M144 0V760M216 0V760M288 0V760M360 0V760M432 0V760M504 0V760M576 0V760M648 0V760M720 0V760M792 0V760M864 0V760M936 0V760M1008 0V760M1080 0V760M1152 0V760" stroke="#72B5FF" stroke-opacity="0.06"/>
+  <rect x="72" y="76" width="1056" height="608" fill="#131E32" stroke="#405B82" stroke-width="3"/>
+  <rect x="72" y="76" width="1056" height="62" fill="#182943"/>
+  <circle cx="111" cy="107" r="8" fill="#72B5FF"/>
+  <circle cx="139" cy="107" r="8" fill="#3B567B"/>
+  <circle cx="167" cy="107" r="8" fill="#3B567B"/>
+  <rect x="204" y="94" width="380" height="26" fill="#0E1B30" stroke="#304360"/>
+  <text x="225" y="113" fill="#AABCD4" font-family="monospace" font-size="15">jiafu-game.store</text>
+  <text x="132" y="255" fill="#72B5FF" font-family="monospace" font-size="22" letter-spacing="3">FULL-STACK PROJECT</text>
+  <text x="132" y="333" fill="#EAF0FB" font-family="monospace" font-weight="700" font-size="64">Jiafu Game Store</text>
+  <text x="132" y="388" fill="#AABCD4" font-family="monospace" font-size="25">Game top-up • Orders • Wallet top-ups</text>
+  <rect x="132" y="457" width="165" height="54" fill="#1A2B45" stroke="#72B5FF"/>
+  <text x="172" y="491" fill="#D8E9FF" font-family="monospace" font-size="20">React</text>
+  <rect x="319" y="457" width="222" height="54" fill="#1A2B45" stroke="#72B5FF"/>
+  <text x="351" y="491" fill="#D8E9FF" font-family="monospace" font-size="20">Spring Boot</text>
+  <rect x="563" y="457" width="165" height="54" fill="#1A2B45" stroke="#72B5FF"/>
+  <text x="607" y="491" fill="#D8E9FF" font-family="monospace" font-size="20">MySQL</text>
+  <path d="M871 249h142v142H871z" fill="#72B5FF"/>
+  <path d="M901 280h82v80h-82z" fill="#0C1830"/>
+  <path d="M917 299h50v10h-50zM917 321h35v10h-35zM917 343h43v10h-43z" fill="#72B5FF"/>
+  <text x="132" y="600" fill="#6F8BAB" font-family="monospace" font-size="16">PORTFOLIO CASE STUDY / 01</text>
+</svg>

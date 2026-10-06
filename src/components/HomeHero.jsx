@@ -1,5 +1,5 @@
-import React, { useEffect, useRef } from 'react';
-import { profile, projects } from '../data/portfolio';
+import React from 'react';
+import { profile } from '../data/portfolio';
 import Icon from './Icon';
 
 const techIcons = {
@@ -37,60 +37,6 @@ function StatIcon({ type }) {
 }
 
 export default function Hero() {
-  const aboutRef = useRef(null);
-
-  useEffect(() => {
-    const section = aboutRef.current;
-    if (!section) return undefined;
-
-    const items = Array.from(section.querySelectorAll('[data-about-pop]'));
-
-    // Keep the delays short enough that the whole entrance feels like one
-    // page transition, but long enough to make every element visibly pop in.
-    items.forEach((item, index) => {
-      item.style.setProperty('--about-pop-delay', `${Math.min(index * 110, 660)}ms`);
-    });
-
-    const setEntered = (entered) => {
-      section.style.setProperty('--about-enter', entered ? '1' : '0');
-      section.classList.toggle('about-entered', entered);
-    };
-
-    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
-      setEntered(true);
-      return undefined;
-    }
-
-    let entered = false;
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        // With full-page scroll snapping, wait until About Me is genuinely
-        // on screen before starting. This prevents the animation from
-        // finishing while the browser is still snapping from Home -> About.
-        if (!entered && entry.isIntersecting && entry.intersectionRatio >= 0.52) {
-          entered = true;
-          setEntered(true);
-          return;
-        }
-
-        // Reset once the page has mostly left the viewport so the entrance
-        // replays when the user scrolls back to About Me from either side.
-        if (entered && (!entry.isIntersecting || entry.intersectionRatio <= 0.12)) {
-          entered = false;
-          setEntered(false);
-        }
-      },
-      {
-        threshold: [0, 0.12, 0.32, 0.52, 0.72, 1],
-        rootMargin: '-4% 0px -4% 0px',
-      }
-    );
-
-    setEntered(false);
-    observer.observe(section);
-
-    return () => observer.disconnect();
-  }, []);
   const avatars = profile.avatars?.length
     ? profile.avatars
     : ['/profile/avatar-1.svg', '/profile/avatar-2.svg'];
@@ -98,9 +44,9 @@ export default function Hero() {
   const hoverAvatar = avatars[1] || avatars[0];
 
   const stats = [
-    { label: 'TOTAL PROJECTS', value: `${projects.length}+`, type: 'projects' },
-    { label: 'CERTIFICATES', value: '2', type: 'certificate' },
-    { label: 'YEARS CODING', value: '3+', type: 'experience' },
+    { label: 'TOTAL PROJECTS', value: '—', type: 'projects' },
+    { label: 'CERTIFICATES', value: '—', type: 'certificate' },
+    { label: 'YEARS OF EXPERIENCE', value: '—', type: 'experience' },
   ];
 
   return (
@@ -115,8 +61,6 @@ export default function Hero() {
           </h1>
 
           <p className="landing-subtitle">Java · Spring Boot · MySQL · React</p>
-
-     
 
           <div className="landing-tech-row" aria-label="Main technologies">
             {Object.entries(techIcons).map(([name, src]) => (
@@ -159,14 +103,13 @@ export default function Hero() {
         </div>
       </section>
 
-      <section className="hero profile-hero" id="about" ref={aboutRef}>
+      <section className="hero profile-hero" id="about">
         <div className="profile-hero-inner">
-          <h2 className="hero-section-title about-pop" data-about-pop>About Me</h2>
+          <h2 className="hero-section-title">About Me</h2>
 
           <div className="hero-top-row">
             <div
-              className="hero-avatar-frame about-pop about-pop-left"
-              data-about-pop
+              className="hero-avatar-frame"
               aria-label={`${profile.name} profile image. Hover to preview alternate image.`}
             >
               <img
@@ -182,7 +125,7 @@ export default function Hero() {
               />
             </div>
 
-            <div className="hero-primary-copy about-pop about-pop-right" data-about-pop>
+            <div className="hero-primary-copy">
               <div className="hero-person">
                 <div className="hero-name-row">
                   <span className="hero-name">{profile.name}</span>
@@ -215,7 +158,7 @@ export default function Hero() {
           </div>
 
           <div className="hero-bottom-copy">
-            <p className="hero-intro about-pop" data-about-pop>
+            <p className="hero-intro">
               I mostly build backend systems with{' '}
               <span className="hero-inline-tech">
                 <img src={techIcons.java} alt="" aria-hidden="true" /> Java
@@ -240,14 +183,14 @@ export default function Hero() {
               {' '}on the frontend.
             </p>
 
-            <div className="hero-action-frames about-pop" data-about-pop aria-label="Portfolio actions">
+            <div className="hero-action-frames" aria-label="Future portfolio actions">
               <span className="hero-action-frame">Download CV</span>
-              <a className="hero-action-frame" href="#projects">View Project</a>
+              <span className="hero-action-frame">View Project</span>
             </div>
 
             <div className="hero-stats" aria-label="Portfolio stats">
               {stats.map((stat) => (
-                <div className="hero-stat-card about-pop" data-about-pop key={stat.label}>
+                <div className="hero-stat-card" key={stat.label}>
                   <div className="hero-stat-top">
                     <span className="hero-stat-icon">
                       <StatIcon type={stat.type} />
