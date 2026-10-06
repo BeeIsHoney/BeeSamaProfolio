@@ -1,4 +1,5 @@
 import React, { useEffect, useMemo, useState } from 'react';
+import { createPortal } from 'react-dom';
 import { projects, skillGroups } from '../data/portfolio';
 import ProjectCard from './ProjectCard';
 import SkillIcon from './SkillIcon';
@@ -113,8 +114,11 @@ export default function PortfolioShowcase() {
   useEffect(() => {
     if (!selectedCertificate) return undefined;
 
-    const previousOverflow = document.body.style.overflow;
+    const previousBodyOverflow = document.body.style.overflow;
+    const previousHtmlOverflow = document.documentElement.style.overflow;
+
     document.body.style.overflow = 'hidden';
+    document.documentElement.style.overflow = 'hidden';
 
     const handleKeyDown = (event) => {
       if (event.key === 'Escape') {
@@ -125,7 +129,8 @@ export default function PortfolioShowcase() {
     window.addEventListener('keydown', handleKeyDown);
 
     return () => {
-      document.body.style.overflow = previousOverflow;
+      document.body.style.overflow = previousBodyOverflow;
+      document.documentElement.style.overflow = previousHtmlOverflow;
       window.removeEventListener('keydown', handleKeyDown);
     };
   }, [selectedCertificate]);
@@ -288,39 +293,42 @@ export default function PortfolioShowcase() {
         </div>
       </section>
 
-      {selectedCertificate && (
-        <div
-          className="certificate-popup"
-          role="dialog"
-          aria-modal="true"
-          aria-label={`${selectedCertificate.title} preview`}
-          onMouseDown={(event) => {
-            if (event.target === event.currentTarget) {
-              setSelectedCertificate(null);
-            }
-          }}
-        >
-          <div className="certificate-popup-content">
-            <button
-              type="button"
-              className="certificate-popup-close"
-              aria-label="Close certificate"
-              onClick={() => setSelectedCertificate(null)}
-            >
-              ×
-            </button>
+      {selectedCertificate &&
+        createPortal(
+          <div
+            className="certificate-popup"
+            role="dialog"
+            aria-modal="true"
+            aria-label={`${selectedCertificate.title} preview`}
+            onClick={(event) => {
+              if (event.target === event.currentTarget) {
+                setSelectedCertificate(null);
+              }
+            }}
+          >
+            <div className="certificate-popup-content">
+              <button
+                type="button"
+                className="certificate-popup-close"
+                aria-label="Close certificate"
+                onClick={() => setSelectedCertificate(null)}
+              >
+                ×
+              </button>
 
-            <img
-              src={selectedCertificate.image}
-              alt={selectedCertificate.title}
-            />
+              <img
+                src={selectedCertificate.image}
+                alt={selectedCertificate.title}
+              />
 
-            <div className="certificate-popup-footer">
-              <h3>{selectedCertificate.title}</h3>
+              <div className="certificate-popup-footer">
+                <h3>{selectedCertificate.title}</h3>
+              </div>
             </div>
-          </div>
-        </div>
-      )}
+          </div>,
+          document.body,
+        )}
+
     </>
   );
 }

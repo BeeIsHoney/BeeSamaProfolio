@@ -5262,3 +5262,137 @@ a.contact-link:hover {
     grid-template-columns: 1fr !important;
   }
 }
+
+/* =========================================================
+   CERTIFICATE POPUP — mobile-safe portal overlay
+   ========================================================= */
+.certificate-card {
+  touch-action: manipulation;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.certificate-popup {
+  position: fixed !important;
+  inset: 0 !important;
+  z-index: 2147483000 !important;
+  width: 100% !important;
+  height: 100% !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  padding: 24px !important;
+  overflow: auto !important;
+  overscroll-behavior: contain;
+  touch-action: pan-y;
+  background: rgba(3, 8, 18, 0.88) !important;
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  opacity: 1 !important;
+  visibility: visible !important;
+  pointer-events: auto !important;
+  transform: none !important;
+  filter: none !important;
+  animation: certificateOverlayIn 180ms ease-out both !important;
+}
+
+.certificate-popup-content {
+  position: relative !important;
+  width: min(920px, 94vw) !important;
+  max-width: 920px !important;
+  max-height: 90svh !important;
+  display: flex !important;
+  flex-direction: column !important;
+  overflow: hidden !important;
+  border: 0 !important;
+  border-radius: 16px !important;
+  background: #0b1425 !important;
+  box-shadow: 0 28px 80px rgba(0, 0, 0, 0.62) !important;
+  opacity: 1 !important;
+  visibility: visible !important;
+  pointer-events: auto !important;
+  transform: none;
+  filter: none !important;
+  animation: certificatePopupIn 260ms cubic-bezier(.2,.8,.2,1) both !important;
+}
+
+.certificate-popup-content img {
+  display: block !important;
+  width: 100% !important;
+  height: auto !important;
+  max-height: calc(90svh - 58px) !important;
+  object-fit: contain !important;
+  object-position: center !important;
+  background: rgba(0, 0, 0, 0.18);
+  user-select: none;
+  -webkit-user-drag: none;
+}
+
+.certificate-popup-close {
+  position: absolute !important;
+  top: 12px !important;
+  right: 12px !important;
+  z-index: 3 !important;
+  width: 44px !important;
+  height: 44px !important;
+  display: grid !important;
+  place-items: center !important;
+  padding: 0 !important;
+  border: 0 !important;
+  border-radius: 999px !important;
+  background: rgba(3, 8, 18, 0.84) !important;
+  color: #fff !important;
+  font: inherit;
+  font-size: 28px !important;
+  line-height: 1 !important;
+  cursor: pointer;
+  touch-action: manipulation;
+  -webkit-tap-highlight-color: transparent;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.36);
+}
+
+.certificate-popup-footer {
+  flex: 0 0 auto;
+  padding: 12px 16px 14px !important;
+}
+
+.certificate-popup-footer h3 {
+  margin: 0 !important;
+  font-size: 12px !important;
+  line-height: 1.4;
+}
+
+@keyframes certificateOverlayIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes certificatePopupIn {
+  from { opacity: 0; transform: translateY(18px) scale(.96); }
+  to { opacity: 1; transform: translateY(0) scale(1); }
+}
+
+@media (max-width: 768px) {
+  .certificate-popup {
+    padding: 12px !important;
+    align-items: center !important;
+  }
+
+  .certificate-popup-content {
+    width: calc(100vw - 24px) !important;
+    max-width: calc(100vw - 24px) !important;
+    max-height: 88svh !important;
+    border-radius: 13px !important;
+  }
+
+  .certificate-popup-content img {
+    max-height: calc(88svh - 56px) !important;
+  }
+
+  .certificate-popup-close {
+    top: 9px !important;
+    right: 9px !important;
+    width: 42px !important;
+    height: 42px !important;
+    font-size: 25px !important;
+  }
+}
