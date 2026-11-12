@@ -49,8 +49,9 @@ export default function App() {
   if (projectSlug) {
     return (
       <>
+        <a className="skip-link" href="#main-content">Skip to main content</a>
         <Header />
-        <main className="project-detail-main">
+        <main id="main-content" className="project-detail-main">
           <ProjectDetail slug={projectSlug} />
         </main>
         <Footer />
@@ -60,8 +61,9 @@ export default function App() {
 
   return (
     <>
+      <a className="skip-link" href="#main-content">Skip to main content</a>
       <Header />
-      <main>
+      <main id="main-content">
         <Hero />
         <PortfolioShowcase />
         <Contact />

@@ -33,6 +33,7 @@ export default function ProjectDetail({ slug }) {
   const details = project.details || {};
   const technologies = details.technologies || project.tags || [];
   const features = details.features || [];
+  const caseStudy = details.caseStudy;
 
   return (
     <section className="jg-project-detail-page" aria-labelledby="jg-project-title">
@@ -51,7 +52,7 @@ export default function ProjectDetail({ slug }) {
 
       <div className="jg-detail-grid">
         <div className="jg-detail-copy">
-          <span className="jg-detail-kicker">FULL-STACK PROJECT</span>
+          <span className="jg-detail-kicker">{details.category || 'FULL-STACK PROJECT'}</span>
 
           <h1 id="jg-project-title">{project.title}</h1>
           <span className="jg-detail-title-line" aria-hidden="true" />
@@ -135,6 +136,51 @@ export default function ProjectDetail({ slug }) {
           </article>
         </div>
       </div>
+
+      {caseStudy && (
+        <div className="case-study">
+          <section className="case-study-intro" aria-labelledby="case-study-challenge">
+            <span className="case-study-eyebrow">01 / PROBLEM & CONTEXT</span>
+            <h2 id="case-study-challenge">The challenge behind the product</h2>
+            <p>{caseStudy.challenge}</p>
+          </section>
+
+          <section className="case-study-approach" aria-labelledby="case-study-approach">
+            <div>
+              <span className="case-study-eyebrow">02 / ENGINEERING APPROACH</span>
+              <h2 id="case-study-approach">How the system fits together</h2>
+              <p>Architecture and product decisions matter more than a long list of tools.</p>
+            </div>
+            <ol className="case-study-steps">
+              {caseStudy.approach.map((step, index) => (
+                <li key={step}><span>{String(index + 1).padStart(2, '0')}</span><p>{step}</p></li>
+              ))}
+            </ol>
+          </section>
+
+          <div className="case-study-diagrams">
+            {caseStudy.architectureImage && (
+              <figure>
+                <img src={caseStudy.architectureImage} loading="lazy" decoding="async" alt="High-level React, Spring Boot, and MySQL architecture diagram" />
+                <figcaption>System architecture · high-level overview</figcaption>
+              </figure>
+            )}
+            {caseStudy.flowImage && (
+              <figure>
+                <img src={caseStudy.flowImage} loading="lazy" decoding="async" alt="User journey from browsing to order and wallet top-up" />
+                <figcaption>Customer journey · product to order</figcaption>
+              </figure>
+            )}
+          </div>
+
+          <section className="case-study-takeaway" aria-labelledby="case-study-learning">
+            <span className="case-study-eyebrow">03 / WHAT IT DEMONSTRATES</span>
+            <h2 id="case-study-learning">What I learned from building it</h2>
+            <p>{caseStudy.learning}</p>
+            <a href="#projects">Explore more work <span aria-hidden="true">↗</span></a>
+          </section>
+        </div>
+      )}
     </section>
   );
 }

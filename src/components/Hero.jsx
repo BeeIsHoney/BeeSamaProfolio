@@ -98,28 +98,27 @@ export default function Hero() {
   const hoverAvatar = avatars[1] || avatars[0];
 
   const stats = [
-    { label: 'TOTAL PROJECTS', value: `${projects.length}+`, type: 'projects' },
+    { label: 'FEATURED PROJECTS', value: String(projects.length), type: 'projects' },
     { label: 'CERTIFICATES', value: '2', type: 'certificate' },
-    { label: 'YEARS CODING', value: '3+', type: 'experience' },
+    { label: 'YEARS LEARNING', value: '3+', type: 'experience' },
   ];
 
   return (
     <>
       <section className="landing-hero" id="home">
         <div className="landing-hero-copy">
-          <span className="landing-kicker">BACKEND-FOCUSED FULLSTACK DEVELOPER</span>
+          <span className="landing-kicker">KYAW SU HEIN / BACKEND-FOCUSED DEVELOPER</span>
 
           <h1 className="landing-title">
-            FullStack
+            Full-stack
             <span>Developer</span>
           </h1>
 
           <p className="landing-subtitle">Java · Spring Boot · MySQL · React</p>
 
           <p className="landing-description">
-            I build backend systems, REST APIs, authentication flows, and database-driven applications
-            with Java and Spring Boot, then connect them to practical frontend experiences when the project
-            needs the full stack.
+            I build Java and Spring Boot APIs behind real ordering, wallet, and integration flows —
+            and create the React interfaces that make those systems useful.
           </p>
 
           <div className="landing-tech-row" aria-label="Main technologies">
@@ -171,7 +170,7 @@ export default function Hero() {
             <div
               className="hero-avatar-frame about-pop about-pop-left"
               data-about-pop
-              aria-label={`${profile.name} profile image. Hover to preview alternate image.`}
+              aria-label={`${profile.name} profile image`}
             >
               <img
                 className="hero-avatar hero-avatar-default"
@@ -206,7 +205,7 @@ export default function Hero() {
                 </div>
               </div>
 
-              <h1 className="hero-role">FullStack Developer - SpringBoot</h1>
+              <h1 className="hero-role">Backend-focused Full-stack Developer</h1>
 
               <div className="hero-tech-icons" aria-label="Main technologies">
                 {Object.entries(techIcons).map(([name, src]) => (
@@ -247,12 +246,13 @@ export default function Hero() {
             <div className="hero-action-frames about-pop" data-about-pop aria-label="Portfolio actions">
               <a
                 className="hero-action-frame"
-                href="/Kyaw-Su-Hein-CV.pdf"
-                download="Kyaw-Su-Hein-CV.pdf"
+                href={`https://github.com/${profile.github}`}
+                target="_blank"
+                rel="noopener noreferrer"
               >
-                Download CV
+                GitHub Profile
               </a>
-              <a className="hero-action-frame" href="#projects">View Project</a>
+              <a className="hero-action-frame" href="#project/jiafu-game-store">Project Case Study</a>
             </div>
 
             <div className="hero-stats" aria-label="Portfolio stats">
