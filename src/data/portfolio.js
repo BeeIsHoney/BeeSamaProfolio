@@ -47,8 +47,21 @@ export const projects = [
     image: '/jiafufront.jpg',
     liveUrl: 'https://jiafu-game.store',
     details: {
+      category: 'Full-stack application · Case study',
       overview:
-        'JiaFu Game Store is a full-stack digital game top-up platform built around a fast purchase flow, wallet and recharge handling, automated provider integrations, and an admin system for managing day-to-day store operations.',
+        'A working digital top-up storefront combining product discovery, order processing, wallet/recharge flows, external provider APIs, and administrative tools.',
+      caseStudy: {
+        challenge: 'A top-up storefront needs to connect customer actions, wallet activity, application data, and external providers. The hard part is keeping the purchase journey understandable when multiple systems contribute to an order.',
+        approach: [
+          'Build a responsive React purchase experience around browsing, selecting, and tracking orders.',
+          'Use Java and Spring Boot to provide APIs and organize application behavior behind the interface.',
+          'Use MySQL for application records and integrate external provider APIs for fulfillment.',
+          'Support administrators with dedicated controls for products, pricing, payments, and order operations.',
+        ],
+        learning: 'This project demonstrates how frontend UX, backend business rules, database design, and third-party integrations have to work together — especially when an external service is delayed or unavailable.',
+        architectureImage: '/projects/jiafu-game-store/architecture.svg',
+        flowImage: '/projects/jiafu-game-store/flow.svg',
+      },
       technologies: ['React', 'Java', 'Spring Boot', 'MySQL', 'REST API'],
       features: [
         'Multi-game top-up and digital product catalog with a responsive purchase flow.',
