@@ -1,19 +1,24 @@
 import React from 'react';
 import { profile } from '../data/portfolio';
-import Icon from './Icon';
 
-function normalizeProfileUrl(value, service) {
-  if (!value) return '#';
-  if (/^https?:\/\//i.test(value)) return value;
-  const username = value.replace(/^@/, '');
-  if (service === 'github') return `https://github.com/${username}`;
-  if (service === 'telegram') return `https://t.me/${username}`;
-  return value;
-}
-
-export default function Footer({ isProjectPage = false }) {
-  const topHref = isProjectPage ? '/' : '#home';
-
+export default function Footer() {
   return (
-   <></>)
+    <footer className="portfolio-footer">
+      <div className="portfolio-footer-inner">
+        <div>
+          <a className="footer-brand" href="#home" aria-label="Back to homepage">KSH<span>.</span></a>
+          <p>Building practical software with Java, Spring Boot, and React.</p>
+        </div>
+        <div className="footer-links" aria-label="Footer links">
+          <a href="#projects">Projects</a>
+          <a href={`https://github.com/${profile.github}`} target="_blank" rel="noopener noreferrer">GitHub</a>
+          <a href={`mailto:${profile.email}`}>Email</a>
+        </div>
+      </div>
+      <div className="portfolio-footer-bottom">
+        <span>© {new Date().getFullYear()} {profile.name}</span>
+        <span>Designed & built with care.</span>
+      </div>
+    </footer>
+  );
 }
