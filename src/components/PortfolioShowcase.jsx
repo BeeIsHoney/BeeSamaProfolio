@@ -1,4 +1,4 @@
-import React, { useEffect, useMemo, useState } from 'react';
+import React, { useEffect, useMemo, useRef, useState } from 'react';
 import { createPortal } from 'react-dom';
 import { projects, skillGroups } from '../data/portfolio';
 import ProjectCard from './ProjectCard';
@@ -93,6 +93,21 @@ function TabIcon({ type }) {
 export default function PortfolioShowcase() {
   const [activeTab, setActiveTab] = useState('projects');
   const [selectedCertificate, setSelectedCertificate] = useState(null);
+  const tabRefs = useRef([]);
+  const closeButtonRef = useRef(null);
+  const previousFocusRef = useRef(null);
+
+  const handleTabKeyDown = (event, currentIndex) => {
+    let nextIndex = currentIndex;
+    if (event.key === 'ArrowRight') nextIndex = (currentIndex + 1) % tabs.length;
+    else if (event.key === 'ArrowLeft') nextIndex = (currentIndex - 1 + tabs.length) % tabs.length;
+    else if (event.key === 'Home') nextIndex = 0;
+    else if (event.key === 'End') nextIndex = tabs.length - 1;
+    else return;
+    event.preventDefault();
+    setActiveTab(tabs[nextIndex].id);
+    tabRefs.current[nextIndex]?.focus();
+  };
 
   const skills = useMemo(() => {
     const unique = new Map();
@@ -114,6 +129,9 @@ export default function PortfolioShowcase() {
   useEffect(() => {
     if (!selectedCertificate) return undefined;
 
+    previousFocusRef.current = document.activeElement;
+    closeButtonRef.current?.focus();
+
     const previousBodyOverflow = document.body.style.overflow;
     const previousHtmlOverflow = document.documentElement.style.overflow;
 
@@ -124,6 +142,10 @@ export default function PortfolioShowcase() {
       if (event.key === 'Escape') {
         setSelectedCertificate(null);
       }
+      if (event.key === 'Tab') {
+        event.preventDefault();
+        closeButtonRef.current?.focus();
+      }
     };
 
     window.addEventListener('keydown', handleKeyDown);
@@ -132,6 +154,7 @@ export default function PortfolioShowcase() {
       document.body.style.overflow = previousBodyOverflow;
       document.documentElement.style.overflow = previousHtmlOverflow;
       window.removeEventListener('keydown', handleKeyDown);
+      previousFocusRef.current?.focus();
     };
   }, [selectedCertificate]);
 
@@ -157,8 +180,12 @@ export default function PortfolioShowcase() {
             role="tablist"
             aria-label="Portfolio sections"
           >
-            {tabs.map((tab) => (
+            {tabs.map((tab, index) => (
               <button
+                id={`showcase-tab-${tab.id}`}
+                ref={(node) => { tabRefs.current[index] = node; }}
+                tabIndex={activeTab === tab.id ? 0 : -1}
+                onKeyDown={(event) => handleTabKeyDown(event, index)}
                 key={tab.id}
                 type="button"
                 role="tab"
@@ -183,6 +210,8 @@ export default function PortfolioShowcase() {
                 className="showcase-panel"
                 id="showcase-panel-projects"
                 role="tabpanel"
+                tabIndex={0}
+                aria-labelledby="showcase-tab-projects"
               >
                 {projects.length ? (
                   <div className="showcase-project-grid">
@@ -209,6 +238,8 @@ export default function PortfolioShowcase() {
                 className="showcase-panel"
                 id="showcase-panel-certificates"
                 role="tabpanel"
+                tabIndex={0}
+                aria-labelledby="showcase-tab-certificates"
               >
                 <div className="certificate-grid">
                   {certificates.map((certificate) => (
@@ -239,6 +270,8 @@ export default function PortfolioShowcase() {
                 className="showcase-panel"
                 id="showcase-panel-experience"
                 role="tabpanel"
+                tabIndex={0}
+                aria-labelledby="showcase-tab-experience"
               >
                 <div className="experience-panel-heading">
                   <span className="showcase-kicker">MY DEVELOPMENT PATH</span>
@@ -275,6 +308,8 @@ export default function PortfolioShowcase() {
                 className="showcase-panel"
                 id="showcase-panel-stack"
                 role="tabpanel"
+                tabIndex={0}
+                aria-labelledby="showcase-tab-stack"
               >
                 <div className="tech-stack-grid">
                   {skills.map((skill) => (
@@ -310,6 +345,7 @@ export default function PortfolioShowcase() {
               <button
                 type="button"
                 className="certificate-popup-close"
+                ref={closeButtonRef}
                 aria-label="Close certificate"
                 onClick={() => setSelectedCertificate(null)}
               >
