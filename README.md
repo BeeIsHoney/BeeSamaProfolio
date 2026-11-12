@@ -7,7 +7,7 @@ A personal portfolio for a **backend-focused full-stack developer** working with
 **JiaFu Game Store** — a digital top-up platform featuring a React storefront, Java/Spring Boot services, MySQL persistence, order and wallet flows, and external provider integrations.
 
 - [Live project](https://jiafu-game.store)
-- [Case study in this portfolio](#projectjiafu-game-store) (open from the Projects section of the running site)
+- Technical case study: open **Projects → Read case study** in the running portfolio.
 
 ## Tech stack
 
