@@ -9,6 +9,8 @@ A personal portfolio built with **React 19** and **Vite**, showcasing Java/Sprin
 
 Project descriptions, categories, links, and case-study content are maintained in `src/data/portfolio.js`. Certificates are in `src/data/certificates.js`.
 
+![The Silent Legacy — interactive 2.5D Moon and Mars exploration](https://res.cloudinary.com/bvoft2ib/image/upload/f_auto,q_auto,w_1000/v1794922236/bee-portfolio/the-silent-legacy-demo.png)
+
 ## Requirements
 
 - Node.js 20 or newer
