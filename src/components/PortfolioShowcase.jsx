@@ -3,19 +3,17 @@ import { createPortal } from 'react-dom';
 import { projects, skillGroups } from '../data/portfolio';
 import ProjectCard from './ProjectCard';
 import SkillIcon from './SkillIcon';
-
-const certificates = [
-  {
-    title: 'Certificate 01',
-    image: '/certificates/certificate1.jpg',
-  },
-  {
-    title: 'Certificate 02',
-    image: '/certificates/certificate2.jpg',
-  },
-];
+import { certificates } from '../data/certificates';
 
 const experiences = [
+  {
+    role: 'NASA Space Apps Challenge 2026 — Hackathon Participant',
+    company: 'NASA Space Apps Challenge',
+    period: 'November 14–15, 2026',
+    description:
+      'Participated in the NASA Space Apps Challenge and worked on The Silent Legacy, an interactive 2.5D pixel-art experience about historic exploration equipment left on the Moon and Mars. Contributed to translating NASA mission stories into an accessible, interactive web experience. Received the Galactic Problem Solver participation certificate.',
+  },
+
   {
     role: 'Started My Programming Journey',
     company: 'Self Learning',
@@ -226,6 +224,7 @@ export default function PortfolioShowcase() {
 
                       <div className="certificate-card-copy">
                         <h3>{certificate.title}</h3>
+                        {certificate.issuer && <small>{certificate.issuer}{certificate.date ? ` · ${certificate.date}` : ''}</small>}
                         <span>View Certificate →</span>
                       </div>
                     </button>
@@ -323,6 +322,7 @@ export default function PortfolioShowcase() {
 
               <div className="certificate-popup-footer">
                 <h3>{selectedCertificate.title}</h3>
+                {selectedCertificate.date && <p>{selectedCertificate.issuer} · {selectedCertificate.date}</p>}
               </div>
             </div>
           </div>,
