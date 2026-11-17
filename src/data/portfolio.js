@@ -60,4 +60,26 @@ export const projects = [
       ],
     },
   },
+  {
+    title: 'The Silent Legacy',
+    slug: 'the-silent-legacy',
+    description:
+      'An interactive 2.5D pixel-art space journey exploring NASA equipment left on the Moon and Mars.',
+    tags: ['React', 'JavaScript', 'Vite', '2.5D Pixel Art', 'Interactive UI'],
+    image: '/projects/the-silent-legacy/cover.svg',
+    liveUrl: 'https://silent-legacy-orbit-live.vercel.app/',
+    sourceUrl: 'https://github.com/sithuaunglife/the-silent-legacy',
+    details: {
+      overview:
+        'Created for the 2026 NASA Space Apps Challenge, The Silent Legacy invites visitors on a story-driven journey from Earth into space and onto the Moon and Mars. Players explore 2.5D pixel-art environments, inspect historic spacecraft hardware, and discover the stories of equipment left behind after exploration missions.',
+      technologies: ['React', 'JavaScript', 'Vite', 'CSS', '2.5D Pixel Art'],
+      features: [
+        'Earth-to-orbit launch sequence and interactive space navigation.',
+        'Explore detailed 2.5D pixel-art lunar and Martian environments.',
+        'Walk as an astronaut and inspect mission artifacts up close.',
+        'Discover historical information about NASA exploration equipment.',
+        'Interactive landing, mission briefing, and return-to-orbit sequences.',
+      ],
+    },
+  },
 ];
