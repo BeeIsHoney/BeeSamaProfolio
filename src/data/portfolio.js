@@ -41,6 +41,7 @@ export const projects = [
   {
     title: 'JiaFu Game Store',
     slug: 'jiafu-game-store',
+    category: 'Full-Stack Web Application',
     description:
       'A full-stack game top-up store with product browsing, ordering, wallet top-ups, and backend integrations.',
     tags: ['React', 'Java', 'Spring Boot', 'MySQL', 'REST API'],
@@ -59,10 +60,20 @@ export const projects = [
         'Admin controls for products, pricing, payments, stock, recharge orders, and service availability.',
       ],
     },
+    caseStudy: {
+      challenge: 'A digital top-up store needs a clear purchase flow while coordinating wallet activity, product availability, customer orders, and external providers.',
+      approach: 'Built a React storefront and Java/Spring Boot backend for catalog browsing, wallet top-ups, order processing, and administrative operations.',
+      highlights: [
+        'Game-specific player information is collected and validated before purchase.',
+        'Order status tracking communicates processing, failure, and refund outcomes.',
+        'Admin tooling supports pricing, payments, stock, and service availability.',
+      ],
+    },
   },
   {
     title: 'The Silent Legacy',
     slug: 'the-silent-legacy',
+    category: 'Interactive Frontend Experience',
     description:
       'An interactive 2.5D pixel-art space journey exploring NASA equipment left on the Moon and Mars.',
     tags: ['React', 'JavaScript', 'Vite', '2.5D Pixel Art', 'Interactive UI'],
@@ -79,6 +90,15 @@ export const projects = [
         'Walk as an astronaut and inspect mission artifacts up close.',
         'Discover historical information about NASA exploration equipment.',
         'Interactive landing, mission briefing, and return-to-orbit sequences.',
+      ],
+    },
+    caseStudy: {
+      challenge: 'Historic exploration equipment left on the Moon and Mars is difficult to experience through static information alone.',
+      approach: 'Created a story-driven browser experience combining pixel-art space navigation, astronaut exploration, and artifact inspection.',
+      highlights: [
+        'React and Vite provide the interactive application foundation.',
+        '2.5D scenes connect Earth launch, orbit, Moon, and Mars.',
+        'Interactive inspection and briefings introduce visitors to mission artifacts.',
       ],
     },
   },
