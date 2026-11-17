@@ -66,7 +66,7 @@ export const projects = [
     description:
       'An interactive 2.5D pixel-art space journey exploring NASA equipment left on the Moon and Mars.',
     tags: ['React', 'JavaScript', 'Vite', '2.5D Pixel Art', 'Interactive UI'],
-    image: '/projects/the-silent-legacy/cover.svg',
+    image: 'https://res.cloudinary.com/bvoft2ib/image/upload/v1794922236/bee-portfolio/the-silent-legacy-demo.png',
     liveUrl: 'https://silent-legacy-orbit-live.vercel.app/',
     sourceUrl: 'https://github.com/sithuaunglife/the-silent-legacy',
     details: {
