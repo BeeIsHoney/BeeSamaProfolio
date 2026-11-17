@@ -1,4 +1,4 @@
-import React, { useEffect, useMemo, useState } from 'react';
+import React, { useEffect, useMemo, useRef, useState } from 'react';
 import { createPortal } from 'react-dom';
 import { projects, skillGroups } from '../data/portfolio';
 import ProjectCard from './ProjectCard';
@@ -91,6 +91,25 @@ function TabIcon({ type }) {
 export default function PortfolioShowcase() {
   const [activeTab, setActiveTab] = useState('projects');
   const [selectedCertificate, setSelectedCertificate] = useState(null);
+  const certificateTriggerRef = useRef(null);
+  const certificateCloseRef = useRef(null);
+  const certificateDialogRef = useRef(null);
+
+  const openCertificate = (certificate, trigger) => {
+    certificateTriggerRef.current = trigger;
+    setSelectedCertificate(certificate);
+  };
+
+  const handleTabKeyDown = (event, index) => {
+    if (!['ArrowRight', 'ArrowLeft', 'Home', 'End'].includes(event.key)) return;
+    event.preventDefault();
+    const nextIndex = event.key === 'Home' ? 0
+      : event.key === 'End' ? tabs.length - 1
+      : (index + (event.key === 'ArrowRight' ? 1 : -1) + tabs.length) % tabs.length;
+    const nextTab = tabs[nextIndex].id;
+    setActiveTab(nextTab);
+    window.requestAnimationFrame(() => document.getElementById(`showcase-tab-${nextTab}`)?.focus());
+  };
 
   const skills = useMemo(() => {
     const unique = new Map();
@@ -120,16 +139,41 @@ export default function PortfolioShowcase() {
 
     const handleKeyDown = (event) => {
       if (event.key === 'Escape') {
+        event.preventDefault();
         setSelectedCertificate(null);
+        return;
+      }
+
+      if (event.key === 'Tab') {
+        const focusable = Array.from(
+          certificateDialogRef.current?.querySelectorAll(
+            'a[href], button:not([disabled]), [tabindex]:not([tabindex="-1"])'
+          ) || []
+        );
+        if (focusable.length === 0) {
+          event.preventDefault();
+          return;
+        }
+        const first = focusable[0];
+        const last = focusable[focusable.length - 1];
+        if (event.shiftKey && document.activeElement === first) {
+          event.preventDefault();
+          last.focus();
+        } else if (!event.shiftKey && document.activeElement === last) {
+          event.preventDefault();
+          first.focus();
+        }
       }
     };
 
+    certificateCloseRef.current?.focus();
     window.addEventListener('keydown', handleKeyDown);
 
     return () => {
       document.body.style.overflow = previousBodyOverflow;
       document.documentElement.style.overflow = previousHtmlOverflow;
       window.removeEventListener('keydown', handleKeyDown);
+      certificateTriggerRef.current?.focus({ preventScroll: true });
     };
   }, [selectedCertificate]);
 
@@ -160,8 +204,11 @@ export default function PortfolioShowcase() {
                 key={tab.id}
                 type="button"
                 role="tab"
+                id={`showcase-tab-${tab.id}`}
+                tabIndex={activeTab === tab.id ? 0 : -1}
                 aria-selected={activeTab === tab.id}
                 aria-controls={`showcase-panel-${tab.id}`}
+                onKeyDown={(event) => handleTabKeyDown(event, tabs.indexOf(tab))}
                 className={`showcase-tab${
                   activeTab === tab.id ? ' is-active' : ''
                 }`}
@@ -181,6 +228,7 @@ export default function PortfolioShowcase() {
                 className="showcase-panel"
                 id="showcase-panel-projects"
                 role="tabpanel"
+                aria-labelledby={`showcase-tab-${activeTab}`}
               >
                 {projects.length ? (
                   <div className="showcase-project-grid">
@@ -207,6 +255,7 @@ export default function PortfolioShowcase() {
                 className="showcase-panel"
                 id="showcase-panel-certificates"
                 role="tabpanel"
+                aria-labelledby={`showcase-tab-${activeTab}`}
               >
                 <div className="certificate-grid">
                   {certificates.map((certificate) => (
@@ -214,7 +263,7 @@ export default function PortfolioShowcase() {
                       key={certificate.title}
                       type="button"
                       className="certificate-card"
-                      onClick={() => setSelectedCertificate(certificate)}
+                      onClick={(event) => openCertificate(certificate, event.currentTarget)}
                     >
                       <img
                         src={certificate.image}
@@ -238,6 +287,7 @@ export default function PortfolioShowcase() {
                 className="showcase-panel"
                 id="showcase-panel-experience"
                 role="tabpanel"
+                aria-labelledby={`showcase-tab-${activeTab}`}
               >
                 <div className="experience-panel-heading">
                   <span className="showcase-kicker">MY DEVELOPMENT PATH</span>
@@ -274,6 +324,7 @@ export default function PortfolioShowcase() {
                 className="showcase-panel"
                 id="showcase-panel-stack"
                 role="tabpanel"
+                aria-labelledby={`showcase-tab-${activeTab}`}
               >
                 <div className="tech-stack-grid">
                   {skills.map((skill) => (
@@ -298,7 +349,8 @@ export default function PortfolioShowcase() {
             className="certificate-popup"
             role="dialog"
             aria-modal="true"
-            aria-label={`${selectedCertificate.title} preview`}
+            aria-labelledby="certificate-popup-title"
+            ref={certificateDialogRef}
             onClick={(event) => {
               if (event.target === event.currentTarget) {
                 setSelectedCertificate(null);
@@ -309,6 +361,7 @@ export default function PortfolioShowcase() {
               <button
                 type="button"
                 className="certificate-popup-close"
+                ref={certificateCloseRef}
                 aria-label="Close certificate"
                 onClick={() => setSelectedCertificate(null)}
               >
@@ -321,7 +374,7 @@ export default function PortfolioShowcase() {
               />
 
               <div className="certificate-popup-footer">
-                <h3>{selectedCertificate.title}</h3>
+                <h3 id="certificate-popup-title">{selectedCertificate.title}</h3>
                 {selectedCertificate.date && <p>{selectedCertificate.issuer} · {selectedCertificate.date}</p>}
               </div>
             </div>

@@ -248,12 +248,13 @@ export default function Hero() {
             <div className="hero-action-frames about-pop" data-about-pop aria-label="Portfolio actions">
               <a
                 className="hero-action-frame"
-                href="/Kyaw-Su-Hein-CV.pdf"
-                download="Kyaw-Su-Hein-CV.pdf"
+                href={`https://github.com/${profile.github}`}
+                target="_blank"
+                rel="noopener noreferrer"
               >
-                Download CV
+                GitHub Profile
               </a>
-              <a className="hero-action-frame" href="#projects">View Project</a>
+              <a className="hero-action-frame" href="#projects">View Projects</a>
             </div>
 
             <div className="hero-stats" aria-label="Portfolio stats">

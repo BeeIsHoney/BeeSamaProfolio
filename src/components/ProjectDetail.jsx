@@ -33,6 +33,7 @@ export default function ProjectDetail({ slug }) {
   const details = project.details || {};
   const technologies = details.technologies || project.tags || [];
   const features = details.features || [];
+  const caseStudy = project.caseStudy;
 
   return (
     <section className="jg-project-detail-page" aria-labelledby="jg-project-title">
@@ -51,7 +52,7 @@ export default function ProjectDetail({ slug }) {
 
       <div className="jg-detail-grid">
         <div className="jg-detail-copy">
-          <span className="jg-detail-kicker">FULL-STACK PROJECT</span>
+          <span className="jg-detail-kicker">{project.category || 'PROJECT'}</span>
 
           <h1 id="jg-project-title">{project.title}</h1>
           <span className="jg-detail-title-line" aria-hidden="true" />
@@ -118,7 +119,7 @@ export default function ProjectDetail({ slug }) {
 
         <div className="jg-detail-side">
           <figure className="jg-detail-preview">
-            <img src={project.image} alt={`${project.title} website preview`} />
+            <img src={project.image} alt={`${project.title} preview`} loading="lazy" decoding="async" />
           </figure>
 
           <article className="jg-detail-features">
@@ -135,6 +136,33 @@ export default function ProjectDetail({ slug }) {
           </article>
         </div>
       </div>
+
+      {caseStudy && (
+        <section className="jg-case-study" aria-labelledby="jg-case-study-title">
+          <span className="jg-detail-kicker">BEHIND THE PROJECT</span>
+          <h2 id="jg-case-study-title">Engineering Case Study</h2>
+          <div className="jg-case-study-grid">
+            <div>
+              <h3>The Challenge</h3>
+              <p>{caseStudy.challenge}</p>
+            </div>
+            <div>
+              <h3>My Approach</h3>
+              <p>{caseStudy.approach}</p>
+            </div>
+          </div>
+          {caseStudy.highlights?.length > 0 && (
+            <div className="jg-case-study-highlights">
+              <h3>Implementation Highlights</h3>
+              <ul>
+                {caseStudy.highlights.map((highlight) => (
+                  <li key={highlight}>{highlight}</li>
+                ))}
+              </ul>
+            </div>
+          )}
+        </section>
+      )}
     </section>
   );
 }
