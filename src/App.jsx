@@ -4,11 +4,15 @@ import Hero from './components/Hero';
 import PortfolioShowcase from './components/PortfolioShowcase';
 import ProjectDetail from './components/ProjectDetail';
 import Contact from './components/Contact';
-import Footer from './components/Footer';
 
 function getProjectSlug(hash) {
   const match = hash.match(/^#project\/([^/?#]+)/i);
-  return match ? decodeURIComponent(match[1]) : null;
+  if (!match) return null;
+  try {
+    return decodeURIComponent(match[1]);
+  } catch {
+    return null;
+  }
 }
 
 export default function App() {
@@ -53,7 +57,6 @@ export default function App() {
         <main className="project-detail-main">
           <ProjectDetail slug={projectSlug} />
         </main>
-        <Footer />
       </>
     );
   }
@@ -66,7 +69,6 @@ export default function App() {
         <PortfolioShowcase />
         <Contact />
       </main>
-      <Footer />
     </>
   );
 }
