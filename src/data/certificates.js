@@ -7,11 +7,15 @@ export const certificates = [
     date: 'November 14–15, 2026',
   },
   {
-    title: 'Certificate 01',
+    title: 'One Stop Java Course — Batch 12',
     image: '/certificates/certificate1.jpg',
+    issuer: 'Java Developer Class (JDC)',
+    date: 'July 30, 2025',
   },
   {
-    title: 'Certificate 02',
+    title: 'Programming Basic Course',
     image: '/certificates/certificate2.jpg',
+    issuer: 'Fairway Weekend Class',
+    date: 'January 29, 2023',
   },
 ];
