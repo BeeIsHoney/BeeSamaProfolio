@@ -1,5 +1,6 @@
 import React, { useEffect, useRef } from 'react';
 import { profile, projects } from '../data/portfolio';
+import { certificates } from '../data/certificates';
 import Icon from './Icon';
 
 const techIcons = {
@@ -99,7 +100,7 @@ export default function Hero() {
 
   const stats = [
     { label: 'TOTAL PROJECTS', value: `${projects.length}+`, type: 'projects' },
-    { label: 'CERTIFICATES', value: '2', type: 'certificate' },
+    { label: 'CERTIFICATES', value: String(certificates.length), type: 'certificate' },
     { label: 'YEARS CODING', value: '3+', type: 'experience' },
   ];
 
